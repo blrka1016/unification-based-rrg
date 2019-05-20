@@ -27,11 +27,9 @@ goal> twoconstnosemconcat(C).
 
 % Semantics of mother determined entirely by concatenating all lists within Sem:Frames
 
-twoConstituentsConcatAllSemFrames rule
+buildMEConcatSem rule
  (C,
  mother: (sem: (frames: (entities:Ent3,
-			 macroEvents:Mac3,
-			 macroEventRels: MRels3,
 			 propositions: P3,
 			 propositionRels: PRel3,
 			 buildMacroEvent:(eventframes:Ev3b,
@@ -40,30 +38,24 @@ twoConstituentsConcatAllSemFrames rule
 ===>
 cat> (cx, mother: (Y,
 		   sem:(frames:(entities: Ent1,
-			        macroEvents: Mac1,
-				macroEventRels: MRels1,
 			        propositions: P1,
 			        propositionRels: PRel1,
 				buildMacroEvent:(eventframes:Ev1b,
 						 modifiers:M1b))))),
 cat> (cx, mother: (Z,
 		   sem:(frames:(entities: Ent2,
-			        macroEvents: Mac2,
-				macroEventRels: MRels2,
 			        propositions: P2,
 			        propositionRels: PRel2,
 				buildMacroEvent:(eventframes:Ev2b,
 						 modifiers:M2b))))),
-goal> ( (concatAllSem(C),concat_frames(Ent1,Ent2,Ent3),concat_frames(Mac1,Mac2,Mac3),concat_frames(P1,P2,P3),concat_frames(PRel1,PRel2,PRel3),concat_frames(Ev1b,Ev2b,Ev3b),concat_frames(M1b,M2b,M3b),concat_frames(MRels1,MRels2,MRels3)) ).
+goal> ( (buildMEConcatSem(C),concat_frames(Ent1,Ent2,Ent3),concat_frames(P1,P2,P3),concat_frames(PRel1,PRel2,PRel3),concat_frames(Ev1b,Ev2b,Ev3b),concat_frames(M1b,M2b,M3b)) ).
 
 
 % Semantics of mother determined entirely by concatenating all lists within Sem:Frames except for buildMacroEvent:modifiers
 
-twoConstituentsConcatAllExclModFrames rule
+buildMEConcatSemexclmod rule
  (C,
  mother: (sem: (frames: (entities:Ent3,
-			 macroEvents:Mac3,
-			 macroEventRels: MRels3,
 			 propositions: P3,
 			 propositionRels: PRel3,
 			 buildMacroEvent:(eventframes:Ev3b)))),
@@ -71,26 +63,20 @@ twoConstituentsConcatAllExclModFrames rule
 ===>
 cat> (cx, mother: (Y,
 		   sem:(frames:(entities: Ent1,
-			        macroEvents: Mac1,
-				macroEventRels: MRels1,
 			        propositions: P1,
 			        propositionRels: PRel1,
 				buildMacroEvent:(eventframes:Ev1b))))),
 cat> (cx, mother: (Z,
 		   sem:(frames:(entities: Ent2,
-			        macroEvents: Mac2,
-				macroEventRels: MRels2,
 			        propositions: P2,
 			        propositionRels: PRel2,
 				buildMacroEvent:(eventframes:Ev2b))))),
-goal> ( (concatallexclmod(C),concat_frames(Ent1,Ent2,Ent3),concat_frames(Mac1,Mac2,Mac3),concat_frames(P1,P2,P3),concat_frames(PRel1,PRel2,PRel3),concat_frames(Ev1b,Ev2b,Ev3b),concat_frames(MRels1,MRels2,MRels3)) ).
+goal> ( (buildMEConcatSemexclmod(C),concat_frames(Ent1,Ent2,Ent3),concat_frames(P1,P2,P3),concat_frames(PRel1,PRel2,PRel3),concat_frames(Ev1b,Ev2b,Ev3b)) ).
 
 % Semantics of mother determined entirely by concatenating all lists within Sem:Frames except for buildMacroEvent:eventframes
-twoConstituentsConcatAllExclEventFrames rule 
+buildMEConcatSemexclef rule 
  (C,
  mother: (sem: (frames: (entities:Ent3,
-			 macroEvents:Mac3,
-			 macroEventRels: MRels3,
 			 propositions: P3,
 			 propositionRels: PRel3,
 			 buildMacroEvent:(modifiers:M3b)))),
@@ -98,22 +84,18 @@ twoConstituentsConcatAllExclEventFrames rule
 ===>
 cat> (cx, mother: (Y,
 		   sem:(frames:(entities: Ent1,
-			        macroEvents: Mac1,
-				macroEventRels: MRels1,
 			        propositions: P1,
 			        propositionRels: PRel1,
 			        buildMacroEvent:(modifiers:M1b))))),
 cat> (cx, mother: (Z,
 		   sem:(frames:(entities: Ent2,
-			        macroEvents: Mac2,
-				macroEventRels: MRels2,
 			        propositions: P2,
 			        propositionRels: PRel2,
 			        buildMacroEvent:(modifiers:M2b))))),
-goal> ( (concatallexclef(C),concat_frames(Ent1,Ent2,Ent3),concat_frames(Mac1,Mac2,Mac3),concat_frames(P1,P2,P3),concat_frames(PRel1,PRel2,PRel3),concat_frames(M1b,M2b,M3b),concat_frames(MRels1,MRels2,MRels3)) ).
+goal> ( (buildMEConcatSemexclef(C),concat_frames(Ent1,Ent2,Ent3),concat_frames(P1,P2,P3),concat_frames(PRel1,PRel2,PRel3),concat_frames(M1b,M2b,M3b)) ).
 
 % Semantics of mother determined entirely by concatenating macroevents,entities,propositions,propositionrels
-twoConstituentsConcatAllExclEventFrames rule 
+twoConstituentsConcatAllExclEventFrames rule %STILL NEED TO FIX
  (C,
  mother: (sem: (frames: (entities:Ent3,
 			 macroEvents:Mac3,

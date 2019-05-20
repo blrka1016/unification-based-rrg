@@ -1,7 +1,7 @@
 % Signature
 % -------------------------------------------------
 
-bot sub [sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, num, per, gnd, confg, pform, temp, frames, definiteness, macroEvent, operators, proposition, aspect, macroeventrel].
+bot sub [fake,sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, num, per, gnd, confg, pform, temp, frames, definiteness, macroEvent, operators, proposition, aspect, macroeventrel].
   sign_none sub [sign, none].
     sign sub [lex_sign, layers]
       intro [syn: syn,
@@ -9,6 +9,7 @@ bot sub [sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, n
       layers sub [word, nucleus, core, clause, sentence, np, pp]
       intro [periphery: bool].
         clause sub [subj_clause, subjless_clause].
+        core sub [ncore, vcore, pcore].
       lex_sign sub [lexeme, word].
         lexeme sub [v_lxm, n_lxm, invariant_lxm].
           v_lxm sub [aux_lxm, copula_lxm, lex_v_lxm].
@@ -68,11 +69,11 @@ bot sub [sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, n
 	     confg: confg].
     ent_category sub [concrete_fr, abstract_fr].
       concrete_fr sub [animate_fr,inanimate_fr].
-        animate_fr sub [dog_fr,cat_fr,man_fr].
+        animate_fr sub [dog_fr,cat_fr,man_fr, turtle_fr, owl_fr, shark_fr, camel_fr, fish_fr, dolphin_fr, deer_fr, spider_fr, pig_fr, ant_fr, crocodile_fr, lion_fr, lobster_fr, zebra_fr, duck_fr, chicken_fr, seal_fr, panda_fr, hippopotamus_fr, sheep_fr, horse_fr, monkey_fr, alligator_fr, scorpion_fr, fox_fr, frog_fr, elephant_fr, cheetah_fr, puppy_fr, goat_fr, eagle_fr, squirrel_fr, snail_fr, kangaroo_fr, bear_fr, tiger_fr, giraffe_fr, chimpanzee_fr, rabbit_fr, kitten_fr, goldfish_fr, fly_fr, cow_fr, rat_fr, bee_fr, bird_fr, wolf_fr, hamster_fr, octopus_fr, snake_fr].
         inanimate_fr sub [object_fr,location_fr].
           object_fr sub [vase_fr,plate_fr,chair_fr,cake_fr].
       abstract_fr sub [time_unit_fr].
-        time_unit_fr sub [year_fr,week_fr,day_fr,hour_fr,minute_fr,second_fr].
+        time_unit_fr sub [week_fr, hour_fr, century_fr, nanosecond_fr, month_fr, second_fr, millennium_fr, minute_fr, fortnight_fr, year_fr, day_fr, decade_fr].
     ev_fr sub [protag_ev, no_protag_ev]
       intro [sit: (a_ _),
 	     aspect: aspect].
@@ -85,20 +86,22 @@ bot sub [sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, n
       change_state sub [instant_change_state, gradual_change_state,causeEffectAction_fr]
         intro [affected: (a_ _)].
           instant_change_state sub [breaking_fr,falling_fr].
-          gradual_change_state sub [melting_fr].
+          gradual_change_state sub [melting_fr, vaporizing_fr, defrosting_fr, liquefying_fr, condensing_fr, evaporating_fr, freezing_fr, solidifying_fr, thawing_fr, subliming_fr].
       cause_fr sub [causeEffectAction_fr]
       intro [causer: (a_ _),
 	     causedSituation: ev_fr,
 	     causingSituation: ev_fr].
         causeEffectAction sub [caused_motion_fr].
       action_fr sub [intern_caused_act_fr, motion_along_a_path_fr, existing_fr, apply_force_fr, communication_fr].
-        intern_caused_act_fr sub [smiling_fr, laughing_fr, manner_of_motion_fr, create_consume_fr].
-          manner_of_motion_fr sub [running_fr, skipping_fr, dancing_fr, walking_fr].
+        intern_caused_act_fr sub [make_faces_fr, self_motion_fr, make_noise_fr, create_consume_fr].
+          self_motion_fr sub [running_fr, skipping_fr, dancing_fr, walking_fr, jogging_fr, crawling_fr, climbing_fr, sailing_fr, slopping_fr, wading_fr, darting_fr, crawling_fr, sauntering_fr, strutting_fr, cruising_fr, staggering_fr, clomping_fr, swaggering_fr, driving_fr, stomping_fr, tottering_fr, tiptoing_fr, jumping_fr, clambering_fr, waltzing_fr, swimming_fr, mincing_fr, swimming_fr, wriggling_fr, hitchhiking_fr, moseying_fr, flying_fr, romping_fr, hurrying_fr, sashaying_fr, hastenning_fr, prancing_fr, vaulting_fr, scampering_fr, parading_fr, strolling_fr, cantering_fr, flouncing_fr, promenading_fr, strolling_fr, roaming_fr, swinging_fr, making_fr, waddling_fr, tacking_fr, marching_fr, bopping_fr, capering_fr, marching_fr, striding_fr, ambling_fr, coasting_fr, jaunting_fr, loping_fr, trudging_fr, tripping_fr, barging_fr, springing_fr, bustling_fr, limping_fr, lunging_fr, heading_fr, stalking_fr, sprinting_fr, gamboling_fr, shuffling_fr, scooting_fr, trotting_fr, sprinting_fr, edging_fr, shuffling_fr, roving_fr, treading_fr, pacing_fr, proceeding_fr, advancing_fr, lumbering_fr, scrambling_fr, frolicking_fr, scrambling_fr, filing_fr, scurrying_fr, slouching_fr, gallivanting_fr, dashing_fr, trundling_fr, hiking_fr, sleepwalking_fr, venturing_fr, slipping_fr, padding_fr, bounding_fr, storming_fr, dashing_fr, sidling_fr, plodding_fr, pouncing_fr, backing_fr, meandering_fr, lurching_fr, waying_fr, wandering_fr, trooping_fr, creeping_fr, slalomming_fr, shouldering_fr, sneaking_fr, taxiing_fr, rushing_fr, skimming_fr, burrowing_fr, prowling_fr, sloshing_fr, slinking_fr, traipsing_fr, stealing_fr, flitting_fr, slogging_fr, scuttling_fr, repairing_fr, slogging_fr, leaping_fr, nancing_fr, treking_fr, toddling_fr, stumbling_fr, hopping_fr, hobbling_fr, tramping_fr, ripping_fr, slithering_fr, straggling_fr, stepping_fr, hiking_fr, stepping_fr, skulking_fr].
+        make_noise_fr sub [laughing_fr, purring_fr, bellowing_fr, coughing_fr, plashing_fr, neighing_fr, blaring_fr, snickering_fr, tweeting_fr, tinkling_fr, rasping_fr, thumping_fr, squawking_fr, pattering_fr, babbling_fr, hissing_fr, clanging_fr, whistling_fr, snarling_fr, mooing_fr, blasting_fr, yammering_fr, snoring_fr, rustling_fr, crying_fr, snorting_fr, twittering_fr, crooning_fr, barking_fr, clicking_fr, chuckling_fr, thundering_fr, whimpering_fr, splooshing_fr, tolling_fr, crunching_fr, wailing_fr, soughing_fr, mewing_fr, peeping_fr, mewling_fr, quacking_fr, giggling_fr, guffawing_fr, roaring_fr, braying_fr, screeching_fr, keening_fr, cooing_fr, croaking_fr, sobbing_fr, burbling_fr, hooting_fr, squeaking_fr, plonking_fr, clacking_fr, ringing_fr, gurgling_fr, moaning_fr, scrunching_fr, plopping_fr, yaping_fr, beeping_fr, whining_fr, crepitating_fr, squealing_fr, sizzling_fr, cackling_fr, humming_fr, whinnying_fr, tittering_fr, grunting_fr, chattering_fr, sounding_fr, cawing_fr, gobbling_fr, yodeling_fr, rattling_fr, whispering_fr, creaking_fr, yowling_fr, trumpetting_fr, purring_fr, growling_fr, scraping_fr, droning_fr, booming_fr, bleating_fr, clashing_fr, chirping_fr, pealing_fr, clattering_fr, gasping_fr, hawking_fr, ululating_fr, yelping_fr, cheeping_fr, caterwauling_fr, fizzling_fr, sniggering_fr, screaming_fr, howling_fr].
+        make_faces_fr sub [smiling_fr, frowning_fr, pouting_fr, smirking_fr, scowling_fr, grinning_fr, grimacing_fr].
         communication_fr sub [telling_fr, asking_fr]
           intro [comm_recip: (a_ _),
 	         task: (a_ _)]. %ADD MESSAGE ONCE PROPOSITIONS ARE INTEGRATED
         motion_along_a_path_fr sub [motion_along_a_path_fr_bounded, motion_along_a_path_fr_unbounded]
-          intro [manner: manner_of_motion_fr,
+          intro [manner: self_motion_fr,
 	         path: path_fr,
 		 boundedb: bool].
         apply_force_fr sub [rely_fr, depend_fr, lean_fr]
@@ -107,14 +110,13 @@ bot sub [sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, n
             intro [boundingObj: (a_ _)].
           consume_fr sub [eating_fr, reading_fr]
             intro [consumed: (a_ _)].
-          create_fr sub [writing_fr]
+          create_fr sub [writing_fr, composing_fr, jotting_fr, chronicling_fr, authoring_fr, penning_fr, signing_fr, saying_fr, drafting_fr, printing_fr, uttering_fr, typing_fr, speaking_fr, casting_fr, drawing_fr, sculpting_fr, painting_fr]
             intro [created: (a_ _)].
       stim_fr sub [stim_exp_fr, exp_stim_fr]
         intro [stimulus: (a_ _),
 	       experiencer: (a_ _)].
-        exp_stim_fr sub [seeing_fr,desire_fr].
         stim_exp_fr sub [amusing_fr,scaring_fr].
-          desire_fr sub [wanting_fr, liking_fr,psych_situation_fr].
+        exp_stim_fr sub [wanting_fr, liking_fr, fancying_fr, craving_fr, covetting_fr, psych_situation_fr, pitying_fr, despising_fr, liking_fr, loving_fr, regretting_fr, disliking_fr, grieving_fr, envying_fr, resenting_fr, detesting_fr, adoring_fr, dreading_fr, mourning_fr, fearing_fr, ruing_fr, hating_fr, abhoring_fr, loathing_fr, overhearing_fr, detecting_fr, feeling_fr, perceiving_fr, tasting_fr, hearing_fr, sensing_fr, smelling_fr, witnessing_fr, seeing_fr].
             wanting_fr sub [wanting_situation_fr].
             liking_fr sub [liking_situation_fr].
             psych_situation_fr sub [wanting_situation_fr, liking_situation_fr]
@@ -161,14 +163,17 @@ bot sub [sign_none, syn, sem, list, cx, frame, category, verbform, case, bool, n
   temp sub [past,pres,fut].
   definiteness sub [def_marked, unmarked].
     def_marked sub [definite,indefinite,generic,quantified].
-  frames sub []
+  frames sub [buildRD, buildME, buildProp, buildNone]
     intro [entities: list,
-	   referentdescriptor: referentdescriptor,
-	   buildMacroEvent: macroEvent,
-	   macroEvents: list,
-	   macroEventRels: list,
 	   propositions: list,
 	   propositionRels: list].
+    buildRD sub []
+      intro [referentdescriptor: referentdescriptor].
+    buildME sub []
+      intro [buildMacroEvent: macroEvent].
+    buildProp sub []
+      intro [macroEvents: list,
+	     macroEventRels: list].
   agr sub []
     intro [num : num,
 	   per : per,

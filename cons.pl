@@ -38,7 +38,7 @@ motion_along_a_path_fr_bounded cons (boundedb: plus,
 motion_along_a_path_fr_unbounded cons (boundedb: minus,
 				       aspect: activity).
 
-manner_of_motion_fr cons (aspect:activity).
+self_motion_fr cons (aspect:activity).
 phase_onset_fr cons (aspect:achievement).
 instant_change_state cons (aspect:achievement).
 
@@ -76,21 +76,20 @@ active_accomplishment cons (static: minus,
 
 % LEXEME CONSTRAINTS
 
-lexeme cons (sem: (frames: (macroEvents: [],
-			    entities: [],
-			    propositions: [],
-			    propositionRels: [],
-			    macroEventRels: []))).
+lexeme cons (sem: (frames: (propositions: [],
+			    propositionRels: []))).
 
 
-function_lxm cons (sem: (frames:(buildMacroEvent:(eventframes: [],
-						  modifiers: [])))).
+function_lxm cons (sem: (frames:(entities: []))).
 
-nom_lxm cons (sem: (frames: (buildMacroEvent:(eventframes: [],
-					      modifiers: [])))).
+%nom_lxm cons (sem: (frames: (buildMacroEvent:(eventframes: [],
+%					      modifiers: [])))).
 
-n_lxm cons (sem: (frames: (buildMacroEvent:(eventframes: [],
-					    modifiers: []),
+%n_lxm cons (sem: (frames: (buildMacroEvent:(eventframes: [],
+%					    modifiers: []),
+%			   referentdescriptor:(modifrs:[])))).
+
+n_lxm cons (sem: (frames: (entities:[],
 			   referentdescriptor:(modifrs:[])))).
 
 v_lxm cons (syn: (category: (verbal),
@@ -108,19 +107,31 @@ pn_lxm cons (syn: (category: (noun,
 			      agr:(per:third)),
 		   val: e_list),
 	     sem: (index: Y,
-		   frames: (referentdescriptor: (bounded: plus,
-						 cat: (naming_fr,
-						       entity: Y),
-						 def: definite,
-						 ix: Y)))).
+		   frames: (entities: [(bounded: plus,
+					cat: (naming_fr,
+					      entity: Y),
+					def: definite,
+					ix: Y)],
+			    buildMacroEvent: (eventframes:[],
+					      modifiers: [])))).
 
 pro_lxm cons (syn: (category: (noun,
 			      definiteness: definite),
 		   val: e_list),
 	     sem: (index: Y,
-		   frames: (referentdescriptor: (cat: (given_ent,entity: Y),
-						 ix: Y,
-						 def: definite)))).
+		   frames: (entities: [(bounded: plus,
+					cat: (given_ent,
+					      entity: Y),
+					def: definite,
+					ix: Y)],
+			    buildMacroEvent: (eventframes:[],
+					      modifiers: [])))).
+
+
+
+%referentdescriptor: (cat: (given_ent,entity: Y),
+%						 ix: Y,
+%						 def: definite)))).
 
 cn_lxm cons (syn: (category: (noun,
 			      count: count,
@@ -148,38 +159,35 @@ particle_lxm cons (syn: (val: [],
 adj_lxm cons (syn: (category:adj,
 		    val: []),
 	      sem: (frames: (referentdescriptor:(modifrs:[property_fr]),
-			     buildMacroEvent:(modifiers: [])))).
+			     entities: []))).
 		   
 adv_lxm cons (syn: (category:adv,
 		    val: []),
 	      sem: (frames: (buildMacroEvent:(modifiers:[_],
-					      eventframes:[])))).
+					      eventframes:[]),
+			     entities: []))).
 	      
 		    
 
 np cons (syn:(category:(noun,
 			definiteness:def_marked),
 	      val:[]),
-	 sem:(frames:(macroEvents: [],
-		      macroEventRels: [],
-		      propositions: [],
+	 sem:(frames:(propositions: [],
 		      propositionRels: [],
-		      entities: [R|_],
-		      referentdescriptor: (R,
-					   def: def_marked),
+		      entities: [(def: def_marked)|_],
 		      buildMacroEvent:(eventframes:[],
 				       modifiers: [])))).
 
 pp cons (syn:(category:(prep),
-	      val:[]),
-	 sem:(frames:(macroEventRels:[]))).
+	      val:[])).
 
-clause cons (syn:(category:(verb)),
-	     sem:(frames:(buildMacroEvent:(eventframes:[],
-					   modifiers: [])))).
+clause cons (syn:(category:(verb))).
 
 %core cons (sem:(frames:(buildMacroEvent:(eventframes:[_|_])))).
 %				        me_ix:I)))).
+
+ncore cons (syn:(category:(noun))).
+vcore cons (syn:(category:(verb))).
 
 subj_clause cons (syn:(val: [])).
 
@@ -198,11 +206,11 @@ argstCx cons (mother: (core,
 			    clmm:clm_none),
 		       sem: (index: I,
 			     operators: O,
-			     frames: (macroEvents: [],
+			     frames: (%macroEvents: [],
 				     entities: [],
 				     propositions: [],
 				     propositionRels: [],
-				     macroEventRels: [],
+				     %macroEventRels: [],
 				     buildMacroEvent:(modifiers: [],
 						      aspectprofile:Asp,
 						      eventframes:[(aspect:Asp,
@@ -341,7 +349,7 @@ motion_path_argst cons (mother: (sem:(frames:(buildMacroEvent:(eventframes:[(mot
 							    sem:(frames:(buildMacroEvent:(eventframes:[(P,path_fr,
 													trajector: Protag)]))))])),
 			dtrs:[(syn:(category:verb),
-			       sem:(frames:(buildMacroEvent:(eventframes:[(M,manner_of_motion_fr,
+			       sem:(frames:(buildMacroEvent:(eventframes:[(M,self_motion_fr,
 									   sit: S,
 									   protag: Protag)]))))]).
 %Motion path argst - path already in complex predicate
@@ -368,7 +376,7 @@ predToNuc cons (mother:(nucleus,
 		     sem: (X,
 			   frames:(buildMacroEvent:(eventframes:ne_list))))]).
 
-nucToCore cons (mother:(core,
+nucToCore cons (mother:(vcore,
 			sem: X),
 		dtrs: [(nucleus,
 		        sem: (X,
@@ -376,10 +384,8 @@ nucToCore cons (mother:(core,
 
 coreToClause cons (mother:(clause,
 			   sem:(frames:(entities:Ent,
-					buildMacroEvent:(eventframes:[],
-							 modifiers:[]),
-					macroEvents:[Mev|Mevs],
-					macroEventRels: MRels,
+					macroEvents:[Mev],
+					macroEventRels: [],
 				        propositions: P,
 				        propositionRels: PRel),
 				operators: (clauseops: ClauseO),
@@ -387,8 +393,6 @@ coreToClause cons (mother:(clause,
 		   dtrs: [(core,
 			   sem:(frames:(entities:Ent,
 					buildMacroEvent:Mev,
-				        macroEvents: Mevs,
-					macroEventRels: MRels,
 				        propositions: P,
 				        propositionRels: PRel),
 				index: I,
@@ -401,11 +405,8 @@ coreToSubjlessClause cons (mother:(subjless_clause)).
 
 
 clauseToS cons (mother:(sentence,
-			sem: (frames:(entities:Ents,
-				      macroEvents:[],
-				      macroEventRels: [],
-				      buildMacroEvent:(eventframes:[],
-						       modifiers:[]),
+			sem: (frames:(buildNone,
+				      entities:Ents,
 				      propositions:[(proposition,
 						     macroEvs: Mevs,
 						     pOps: ClauseO,
@@ -418,8 +419,6 @@ clauseToS cons (mother:(sentence,
 		        sem:(frames:(entities:Ents,
 				     macroEvents:Mevs,
 				     macroEventRels: Mevrels,
-				     buildMacroEvent:(eventframes:[],
-						       modifiers:[]),
 				     propositions: P,
 				     propositionRels: PRel),
 			     operators: (clauseops: ClauseO),
@@ -431,50 +430,44 @@ nToNNuc cons (mother:(nucleus,
 		      syn:(category:noun),
 		      sem: X)]).
 
-nnucToNCore cons (mother:(core,
+nnucToNCore cons (mother:(ncore,
 			  sem: X),
 		  dtrs: [(nucleus,
 			  syn:(category:noun),
 			  sem: X)]).
 
 pnToNP cons (mother:(np,
-		     sem: (frames: (entities:[X|Ents],
-				    propositions: P,
-				    propositionRels: PRel),
+		     sem: (frames: X,
 			   index: I)),
-	     dtrs:[(core,
-		    syn:(category:noun),
-		    sem: (frames: (referentdescriptor: X,
-				   propositions: P,
-				   propositionRels: PRel,
-				   entities:Ents),
+	     dtrs:[(ncore,
+		    sem: (frames: X,
 			  index: I))]).
 
 
-plNCoreToGenericNP cons (mother:(np,
-				 sem:(frames: (entities:[(referentdescriptor,
-							  bounded: Bounded,
-							  cat: Cat,
-							  ix: Ix,
-							  modifrs: Mods,
-							  number: pl,
-							  def:generic)|Ents],
-					     propositions: P,
-					     propositionRels: PRel),
-				    index: I)),
-			 dtrs:[(core,
-			      syn:(category:noun),
-			      sem:(frames: (referentdescriptor: (referentdescriptor,
-								 bounded: Bounded,
-								 cat: Cat,
-								 ix: Ix,
-								 modifrs: Mods,
-								 number: pl,
-								 def:unmarked),
-					    propositions: P,
-					    propositionRels: PRel,
-					    entities:Ents),
-				   index: I))]).
+%plNCoreToGenericNP cons (mother:(np,
+%				 sem:(frames: (entities:[(referentdescriptor,
+%							  bounded: Bounded,
+%							  cat: Cat,
+%							  ix: Ix,
+%							  modifrs: Mods,
+%							  number: pl,
+%							  def:generic)|Ents],
+%					     propositions: P,
+%					     propositionRels: PRel),
+%				    index: I)),
+%			 dtrs:[(core,
+%			      syn:(category:noun),
+%			      sem:(frames: (referentdescriptor: (referentdescriptor,
+%								 bounded: Bounded,
+%								 cat: Cat,
+%								 ix: Ix,
+%								 modifrs: Mods,
+%								 number: pl,
+%								 def:unmarked),
+%					    propositions: P,
+%					    propositionRels: PRel,
+%					    entities:Ents),
+%				   index: I))]).
 
 ppToNuc cons (mother:(nucleus,
 		      sem: X),
@@ -490,7 +483,6 @@ ppToVerbalMod cons (mother:(pp,
 			  sem:(index: I,
 			       operators: O,
 			       frames:(entities:Ent,
-				       macroEvents:Mevs,
 				       propositions: P,
 				       propositionRels: PRel,
 				       buildMacroEvent:(eventframes:Evs,
@@ -500,7 +492,6 @@ ppToVerbalMod cons (mother:(pp,
 			  sem:(index: I,
 			       operators: O,
 			       frames:(entities:Ent,
-				       macroEvents:Mevs,
 				       propositions: P,
 				       propositionRels: PRel,
 				       buildMacroEvent:(eventframes:[Mod|Evs],
@@ -553,8 +544,8 @@ articleNCore cons (mother:(np,
 					  count:Count,
 					  definiteness:D,
 					  agr: Agr)),
-			   sem:(frames:(entities:[Rd|Ents],
-				        referentdescriptor:Rd),
+			   sem:(frames:(entities:[Rd|Ents]),
+				        %referentdescriptor:Rd),
 				index:I)),
 		   dtrs:[(word,
 			  syn:(category:(det,
@@ -615,29 +606,29 @@ adjNNuc cons (mother:(nucleus,
 			    
 % Add PP modifier (core periphery - excludes relational nouns)
 % e.g. "the house on the corner"
-ppNPMod cons (mother:(core,
-		      syn:Syn,
-		      sem:(frames:(referentdescriptor:(modifrs: [Modfr|Mods],
-						       bounded: B,
-						       cat: Cat,
-						       def: Def,
-						       ix: I,
-						       number: Num)),
-			    index: I,
-			    operators: Ops)),
-	       dtrs:[(core,
-		      syn:(Syn,
-			   category:noun),
-		      sem: (frames:(referentdescriptor:(modifrs: Mods,
-							bounded: B,
-							cat: Cat,
-							def: Def,
-							ix: I,
-							number: Num)),
-			    index: I,
-			    operators: Ops)), (pp,
-					       sem:(frames:(buildMacroEvent:(eventframes:[(Modfr,traj_lm,
-											   trajector:I)|_]))))]).
+%ppNPMod cons (mother:(core,
+%		      syn:Syn,
+%		      sem:(frames:(referentdescriptor:(modifrs: [Modfr|Mods],
+%						       bounded: B,
+%						       cat: Cat,
+%						       def: Def,
+%						       ix: I,
+%						       number: Num)),
+%			    index: I,
+%			    operators: Ops)),
+%	       dtrs:[(core,
+%		      syn:(Syn,
+%			   category:noun),
+%		      sem: (frames:(referentdescriptor:(modifrs: Mods,
+%							bounded: B,
+%							cat: Cat,
+%							def: Def,
+%							ix: I,
+%							number: Num)),
+%			    index: I,
+%			    operators: Ops)), (pp,
+%					       sem:(frames:(buildMacroEvent:(eventframes:[(Modfr,traj_lm,
+%											   trajector:I)|_]))))]).
 
 
 %PREPOSITION PHRASE
@@ -646,8 +637,6 @@ prepN cons (mother:(pp,
 		    syn:(val:[],
 			category:(pform:Pform)),
 		    sem:(frames:(entities:Ent,
-				 macroEvents:MEvs,
-				 referentdescriptor:Rd,
 				 propositions: P,
 				 propositionRels: Prels,
 				 buildMacroEvent:(eventframes:[Ev|Evs],
@@ -657,8 +646,6 @@ prepN cons (mother:(pp,
 			category:(pform:Pform)),
 		   sem:(frames:(buildMacroEvent:(eventframes:[Ev])))),(Np,np,
 								       sem:(frames:(entities:Ent,
-										    macroEvents:MEvs,
-										    referentdescriptor:Rd,
 										    propositions: P,
 										    propositionRels: Prels,
 										    buildMacroEvent:(eventframes:Evs,
@@ -673,14 +660,12 @@ coreMod cons (mother:(core,
 		      periphery: plus,
 		      sem:(index: I,
 			   operators:O,
-			   frames:(buildMacroEvent:(aspectprofile:Asp),
-				  macroEventRels: MRels)),
+			   frames:(buildMacroEvent:(aspectprofile:Asp))),
 		      syn: X),
 	      dtrs:[(core,
 		     sem:(index: I,
 			  operators:O,
-			  frames:(buildMacroEvent:(aspectprofile:Asp),
-				 macroEventRels: MRels)),
+			  frames:(buildMacroEvent:(aspectprofile:Asp))),
 		     syn: (X,
 			   category: verb,
 			   val: [_])),_]).
@@ -875,8 +860,6 @@ coreCoord cons (mother:(clause,
 								   modifiers: Mods2,
 								   ops: CoreOps2,
 								   me_ix: Meix2)|_]],
-				     buildMacroEvent:(eventframes:[],
-						      modifiers:[]),
 				     macroEventRels:[macroeventrel|_]))),
 		dtrs:[(core,
 		       syn:(category: Cat,
@@ -911,8 +894,8 @@ psychCoreCoord cons (mother:(sem:(frames:(macroEventRels:[(semantic_embedding,
 		     dtrs:[(sem:(frames:(buildMacroEvent:(eventframes:[(psych_situation_fr,
 									stimulus: J)],
 							  me_ix:K)))),(syn:(val:[_],
-												  clmm: clm_to),
-											    sem:(frames:(buildMacroEvent:(me_ix:J))))]).
+									    clmm: clm_to),
+								       sem:(frames:(buildMacroEvent:(me_ix:J))))]).
 
 % Abstract construction template: clausal cosubordination
 % two core nodes under a single core node, with a shared periphery (modifiers & operators
@@ -953,31 +936,19 @@ clauseCoord cons (mother: (sentence,
 			   syn:(X,
 				clmm: clm_none),
 			   sem: (frames:(propositionRels:[proprel|_],
-					 macroEvents:[],
-					 macroEventRels: [],
-					 buildMacroEvent:(eventframes:[],
-							  modifiers:[]),
 					 propositions:[(proposition,
-							macroEvs: Mevs1,
 							pOps: ClauseO1,
-							macroEvRels: Mevrels1,
 							prop_ix: I)|[(proposition,
-								      macroEvs: Mevs2,
 								      pOps: ClauseO2,
-								      macroEvRels: Mevrels2,
 								      prop_ix: J)|_]]))),
 		  dtrs: [(subj_clause,
 			  syn: (X,
 				category:Cat),
 			  sem: (index: I,
-				operators: (clauseops: ClauseO1),
-				frames: (macroEvents:Mevs1,
-					 macroEventRels: Mevrels1))),(subj_clause,
+				operators: (clauseops: ClauseO1))),(subj_clause,
 								      syn: (category:Cat),
 								      sem: (index: J,
-									    operators: (clauseops: ClauseO2),
-									    frames: (macroEvents:Mevs2,
-										     macroEventRels: Mevrels2)))]).
+									    operators: (clauseops: ClauseO2)))]).
 
 
 andClauseCoord cons (mother:(sem:(frames:(propositionRels:[(conjunction,
@@ -1007,7 +978,7 @@ v_pathparticle_nucCosub cons (mother: (sem:(frames:(buildMacroEvent:(eventframes
 										    manner: M,
 										    path: P,
 										    protag: Protag)])))),
-			      dtrs: [(sem:(frames:(buildMacroEvent:(eventframes:[(M,manner_of_motion_fr,
+			      dtrs: [(sem:(frames:(buildMacroEvent:(eventframes:[(M,self_motion_fr,
 										  sit: S,
 										  protag: Protag)])))),(sem:(frames:(buildMacroEvent:(eventframes:[(P,directional_path_fr,
 																		    trajector: Protag)]))))]).

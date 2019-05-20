@@ -77,6 +77,9 @@ past_v lex_rule
     fall becomes fell,
     be becomes was,
     break becomes broke,
+    drive becomes drove,
+    cast becomes cast,
+    overhear becomes overheard,
     (Z,y) becomes (Z,ied),
     (Z,e) becomes (Z,ed),
     (Z) becomes (Z,ed).

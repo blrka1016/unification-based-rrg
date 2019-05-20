@@ -8,7 +8,7 @@
  pump(nucleus,nnucToNCore) if true.
  pump(pp,ppToNuc) if true.
  pump(pp,ppToVerbalMod) if true.
- pump(core,plNCoreToGenericNP) if true.
+ %pump(core,plNCoreToGenericNP) if true.
  pump(core,pnToNP) if true.
  pump(word,predToNuc) if true.
  pump(word,nToNNuc) if true.
@@ -34,26 +34,29 @@
  twoconstnosemconcat(to_core) if true.
  twoconstnosemconcat(and_clause) if true.
  twoconstnosemconcat(and_core) if true.
- twoconstnosemconcat(that_clause) if true.
- twoconstnosemconcat(adjNNuc) if true.
+ %twoconstnosemconcat(that_clause) if true.
+ %twoconstnosemconcat(adjNNuc) if true.
 
 % Determines which constructions can participate in the twoConstituentsConcatAllSemFrames rule
- concatAllSem(coreModTimeAdv) if true.
- concatAllSem(coreModPPV) if true.
- concatAllSem(ppNPMod) if true.
+ buildMEConcatSem(coreModTimeAdv) if true.
+% buildMEConcatSem(coreModPPV) if true.
+%concatAllSem(ppNPMod) if true. %NEED TO FIX THIS ONE
+ concatAllSem(fake) if true.
 
 % Determines which constructions can participate in the twoConstituentsConcatAllExclModFrames rule
- concatallexclmod(coreModCompletionTimePP) if true.
- concatallexclmod(coreModDurationPP) if true.
+ buildMEConcatSemexclmod(coreModCompletionTimePP) if true.
+ buildMEConcatSemexclmod(coreModDurationPP) if true.
+ buildMEConcatSemexclmod(fake) if true.
 
 % Determines which constructions can participate in the twoConstituentsConcatAllExclEventFrames rule
- concatallexclef(predArg) if true.
- concatallexclef(subjPred) if true.
- concatallexclef(coreCosubSubjRaiseOnsetPhase) if true.
- concatallexclef(coreCosubSubjRaiseGerundPhase) if true.
- concatallexclef(coreCosubSubjControlPsychTo) if true.
- concatallexclef(vpConjunctionReductionCoreCosub) if true.
- concatallexclef(v_pathparticle_nucCosub) if true.
+ buildMEConcatSemexclef(subjPred) if true.
+ buildMEConcatSemexclef(predArg) if true.
+ buildMEConcatSemexclef(coreCosubSubjRaiseOnsetPhase) if true.
+ %buildMEConcatSemexclef(coreCosubSubjRaiseGerundPhase) if true.
+ buildMEConcatSemexclef(coreCosubSubjControlPsychTo) if true.
+ buildMEConcatSemexclef(vpConjunctionReductionCoreCosub) if true.
+ buildMEConcatSemexclef(v_pathparticle_nucCosub) if true.
+ buildMEConcatSemexclef(fake) if true.
 
 % Determines which constructions can participate in the coreCoord rule
  mecoord(commCoreCoord) if true.
